@@ -318,9 +318,9 @@ public class DriverFactory {
 
             switch(var5) {
                 case 0:
-                    if (oPlatform.equals("windows")) {
+                    if (oPlatform.equals("windows")) {                      
                         System.setProperty("webdriver.chrome.driver", driverLocationPath + "/chromedriver.exe");
-                    } else if (oPlatform.equals("linux")) {
+                    } else if (oPlatform.equals("linux")) {                        
                         System.setProperty("webdriver.chrome.driver", driverLocationPath + "/chromedriver");
                     }
                     break;

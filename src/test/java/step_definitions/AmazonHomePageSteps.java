@@ -17,10 +17,14 @@ public class AmazonHomePageSteps {
     private AmazonHomePage amazonHomePage;
     private RemoteWebDriver driver = DriverManager.getDriver();
 
+      public AmazonHomePageSteps() throws Exception {
+        // initialization code
+         amazonHomePage = new AmazonHomePage(driver);
+    }
     @Given("^I visit the web site as a guest user$")
     public void i_visit_the_web_site_as_a_guest_user() throws Throwable {
         Reporter.log("Given I visit the web site as a guest user");
-        amazonHomePage = new AmazonHomePage(driver);
+        //amazonHomePage = new AmazonHomePage(driver);
         boolean pageTitle = amazonHomePage.check_HomePage_Page_Title();
         Assert.assertTrue(pageTitle, "Expected Title is Not Display");
         LOGGER.info("I am on Amazon Home page");
