@@ -1,6 +1,6 @@
 package step_definitions;
 
-import com.automation.qa.ttafuicore.driver.DriverManager;
+import driver.DriverManager;
 import cucumber.api.java.en.When;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.remote.RemoteWebDriver;

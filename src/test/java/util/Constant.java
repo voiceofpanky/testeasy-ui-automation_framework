@@ -8,11 +8,11 @@ package util;
 import java.net.URL;
 import java.util.Properties;
 
-import com.automation.qa.ttafuicore.util.FrameworkProperties;
+import util.FrameworkProperties;
 import org.apache.log4j.Logger;
 
 public class Constant {
-    private static final Logger LOGGER = Logger.getLogger(String.valueOf(com.automation.qa.ttafuicore.util.Constant.class));
+    private static final Logger LOGGER = Logger.getLogger(String.valueOf(util.Constant.class));
     private static final String DRIVER_TYPE_KEY = "driverType";
     private static final String DRIVER_LOCATION_KEY = "driverLocation";
     private static final String BROWSER_NAME_KEY = "browser";
@@ -42,8 +42,8 @@ public class Constant {
         FrameworkProperties loadProperties = new FrameworkProperties();
         URL congfigFile = null;
         URL driverLocation = null;
-        congfigFile = com.automation.qa.ttafuicore.util.Constant.class.getClassLoader().getResource("config/Configuation.properties");
-        driverLocation = com.automation.qa.ttafuicore.util.Constant.class.getClassLoader().getResource("drivers/");
+        congfigFile = util.Constant.class.getClassLoader().getResource("config/Configuation.properties");
+        driverLocation = util.Constant.class.getClassLoader().getResource("drivers/");
         properties = loadProperties.readProjEnvConfig(congfigFile.getPath());
 
         try {

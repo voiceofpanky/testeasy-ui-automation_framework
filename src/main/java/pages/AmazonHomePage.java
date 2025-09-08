@@ -1,6 +1,6 @@
 package pages;
 
-import com.automation.qa.ttafuicore.page.BasicPage;
+
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.PageFactory;
 import panels.AmazonHeaderPanel;

@@ -1,6 +1,6 @@
 package step_definitions;
 
-import com.automation.qa.ttafuicore.driver.DriverManager;
+import util.DriverManager;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import io.cucumber.datatable.DataTable;

@@ -1,6 +1,6 @@
 package step_definitions;
 
-import com.automation.qa.ttafuicore.driver.DriverManager;
+import util.DriverManager;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
 import org.apache.log4j.Logger;

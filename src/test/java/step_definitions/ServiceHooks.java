@@ -1,7 +1,7 @@
 package step_definitions;
 
-import com.automation.qa.ttafuicore.driver.DriverManager;
-import com.automation.qa.ttafuicore.util.Constant;
+import util.DriverManager;
+import util.Constant;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import org.apache.log4j.Logger;
