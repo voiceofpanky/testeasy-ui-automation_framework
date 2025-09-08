@@ -43,7 +43,11 @@ Goto SmokeTest.xml and configure your browser details and start Run.
   
   To run scenarios in parallel,
   
-    mvn clean install -PSmokeTest
+    mvn clean install -PSmokeTest OR 
+    
+  To run via command line
+  
+    mvn -Dtest=runner.SmokeTest test
     
   To run scenarios in cross browsers at the same time
   
