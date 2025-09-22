@@ -10,7 +10,7 @@ Feature:  As A User I want to search for sweets on amazon So I can find my prefe
     When I click on "Proceed to Checkout" button on Cart page
     Then I should be redirected to Login page
 
-  @regression @smoke @severity=blocker @issue=BIG-38916 @tmsLink=TC-06
+  @regression @smoke @severity=blocker @issue=BIG-38916 @tmsLink=TC-06 @sanity
   Scenario: Verify Guest checkout for single item
     Given I visit the web site as a guest user
     When I search for "cakes"
