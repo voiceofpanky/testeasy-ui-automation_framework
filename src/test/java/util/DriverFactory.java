@@ -22,6 +22,7 @@ public class DriverFactory {
         protected static DesiredCapabilities capability;
         protected static String node;
         protected static String oPlatform;
+        private static ChromeOptions chromeOptions; // Add this field
 
         public DriverFactory() {
         }
@@ -29,6 +30,7 @@ public class DriverFactory {
         public static void createInstance(String browserName, String browserVersion, String platform) {
             browserName = browserName != null ? browserName : "chrome";
             oPlatform = platform;
+            setWebDriverLocation(browserName); // Always set driver location first
             setDesiredCapabilities(browserName);
             setPlatform(platform);
             setBrowserName(browserName);
@@ -45,11 +47,35 @@ public class DriverFactory {
                     LOGGER.error("TESTEASY MESSAGE: Failed to set up Selenium grid.");
                 }
             } else {
-                setWebDriverLocation(browserName);
                 createLocalInstance(browserName);
             }
 
             setWebDriver();
+        }
+
+        private static void setWebDriverLocation(String browserName) {
+            String driverPath = "";
+            if (browserName.equalsIgnoreCase("chrome")) {
+                driverPath = Constant.CHROME_DRIVER_PATH;
+                System.setProperty("webdriver.chrome.driver", driverPath);
+            } 
+            // else if (browserName.equalsIgnoreCase("firefox")) {
+            //     driverPath = Constant.FIREFOX_DRIVER_PATH;
+            //     System.setProperty("webdriver.gecko.driver", driverPath);
+            // } else if (browserName.equalsIgnoreCase("ie")) {
+            //     driverPath = Constant.IE_DRIVER_PATH;
+            //     System.setProperty("webdriver.ie.driver", driverPath);
+            // } else if (browserName.equalsIgnoreCase("edge")) {
+            //     driverPath = Constant.EDGE_DRIVER_PATH;
+            //     System.setProperty("webdriver.edge.driver", driverPath);
+            // } else if (browserName.equalsIgnoreCase("safari")) {
+            //     // SafariDriver does not require setting a driver path
+            // } 
+            else {
+                LOGGER.error("TESTEASY MESSAGE: Unknown browser for setting driver location: " + browserName);
+                System.exit(1);
+            }
+            LOGGER.info("TESTEASY MESSAGE: Set WebDriver location for " + browserName + " to " + driverPath);
         }
 
         private static void setBrowserName(String browserName) {
@@ -100,94 +126,6 @@ public class DriverFactory {
 
         }
 
-        private static void createLocalInstance(String browserName) {
-            byte var2 = -1;
-            switch(browserName.hashCode()) {
-                case -1361128838:
-                    if (browserName.equals("chrome")) {
-                        var2 = 0;
-                    }
-                    break;
-                case -909897856:
-                    if (browserName.equals("safari")) {
-                        var2 = 2;
-                    }
-                    break;
-                case -849452327:
-                    if (browserName.equals("firefox")) {
-                        var2 = 1;
-                    }
-                    break;
-                case 3356:
-                    if (browserName.equals("ie")) {
-                        var2 = 3;
-                    }
-                    break;
-                case 3108285:
-                    if (browserName.equals("edge")) {
-                        var2 = 4;
-                    }
-            }
-
-            switch(var2) {
-                case 0:
-                    DriverManager.driver.set(new ChromeDriver(capability));
-                    break;
-                case 1:
-                    DriverManager.driver.set(new FirefoxDriver(capability));
-                    break;
-                case 2:
-                    DriverManager.driver.set(new SafariDriver(capability));
-                    break;
-                case 3:
-                    DriverManager.driver.set(new InternetExplorerDriver(capability));
-                    break;
-                case 4:
-                    DriverManager.driver.set(new EdgeDriver(capability));
-                    break;
-                default:
-                    DriverManager.driver.set(new ChromeDriver(capability));
-            }
-
-        }
-
-        private static void setPlatform(String platform) {
-            byte var2 = -1;
-            switch(platform.hashCode()) {
-                case 107855:
-                    if (platform.equals("mac")) {
-                        var2 = 1;
-                    }
-                    break;
-                case 102977780:
-                    if (platform.equals("linux")) {
-                        var2 = 2;
-                    }
-                    break;
-                case 1349493379:
-                    if (platform.equals("windows")) {
-                        var2 = 0;
-                    }
-            }
-
-            switch(var2) {
-                case 0:
-                    capability.setPlatform(Platform.WINDOWS);
-                    break;
-                case 1:
-                    capability.setPlatform(Platform.MAC);
-                    break;
-                case 2:
-                    capability.setPlatform(Platform.LINUX);
-                    break;
-                default:
-                    LOGGER.info("TESTEASY MESSAGE: Failed to set the Platform as: " + Constant.PLATFORM);
-                    System.exit(1);
-            }
-
-            LOGGER.info("TESTEASY MESSAGE: Successfully set the Platform as: " + Constant.PLATFORM);
-        }
-
         private static void setDesiredCapabilities(String browserName) {
             capability = new DesiredCapabilities();
             byte var2 = -1;
@@ -220,13 +158,11 @@ public class DriverFactory {
 
             switch(var2) {
                 case 0:
-                    HashMap<String, Object> chromePrefs = new HashMap();
+                    chromeOptions = new ChromeOptions();
+                    HashMap<String, Object> chromePrefs = new HashMap<>();
                     chromePrefs.put("profile.default_content_settings.popups", 0);
-                    ChromeOptions options = new ChromeOptions();
-                    options.setExperimentalOption("prefs", chromePrefs);
-                    capability = DesiredCapabilities.chrome();
-                    capability.setCapability("acceptSslCerts", true);
-                    capability.setCapability("goog:chromeOptions", options);
+                    chromeOptions.setExperimentalOption("prefs", chromePrefs);
+                    chromeOptions.setAcceptInsecureCerts(true);
                     System.out.println("Success : setDesiredCapabilities");
                     break;
                 case 1:
@@ -288,60 +224,92 @@ public class DriverFactory {
             LOGGER.info("TESTEASY MESSAGE: Successfully set Capabilities for " + browserName + " browser");
         }
 
-        private static void setWebDriverLocation(String browserName) {
-            String driverLocation = "src/test/resources/drivers";
-            File file = new File(driverLocation);
-            String driverLocationPath = file.getAbsolutePath();
-            byte var5 = -1;
+        private static void createLocalInstance(String browserName) {
+            byte var2 = -1;
             switch(browserName.hashCode()) {
                 case -1361128838:
                     if (browserName.equals("chrome")) {
-                        var5 = 0;
+                        var2 = 0;
+                    }
+                    break;
+                case -909897856:
+                    if (browserName.equals("safari")) {
+                        var2 = 2;
                     }
                     break;
                 case -849452327:
                     if (browserName.equals("firefox")) {
-                        var5 = 1;
+                        var2 = 1;
                     }
                     break;
                 case 3356:
                     if (browserName.equals("ie")) {
-                        var5 = 2;
+                        var2 = 3;
                     }
                     break;
                 case 3108285:
                     if (browserName.equals("edge")) {
-                        var5 = 3;
+                        var2 = 4;
                     }
             }
 
-            switch(var5) {
+            switch(var2) {
                 case 0:
-                    if (oPlatform.equals("windows")) {
-                        System.setProperty("webdriver.chrome.driver", driverLocationPath + "/chromedriver.exe");
-                    } else if (oPlatform.equals("linux")) {
-                        System.setProperty("webdriver.chrome.driver", driverLocationPath + "/chromedriver");
-                    }
+                    DriverManager.driver.set(new ChromeDriver(chromeOptions));
                     break;
                 case 1:
-                    if (oPlatform.equals("windows")) {
-                        System.setProperty("webdriver.gecko.driver", driverLocationPath + "/geckodriver.exe");
-                    } else if (oPlatform.equals("linux")) {
-                        System.setProperty("webdriver.gecko.driver", driverLocationPath + "/geckodriver");
-                    }
+                    DriverManager.driver.set(new FirefoxDriver(capability));
                     break;
                 case 2:
-                    System.setProperty("webdriver.ie.driver", driverLocationPath + "/IEDriverServer.exe");
+                    DriverManager.driver.set(new SafariDriver(capability));
                     break;
                 case 3:
-                    System.setProperty("webdriver.edge.driver", driverLocationPath + "/MicrosoftWebDriver.exe");
+                    DriverManager.driver.set(new InternetExplorerDriver(capability));
+                    break;
+                case 4:
+                    DriverManager.driver.set(new EdgeDriver(capability));
                     break;
                 default:
-                    LOGGER.info("TESTEASY MESSAGE: Failed to  Set the driver locations");
+                    DriverManager.driver.set(new ChromeDriver(chromeOptions));
+            }
+
+        }
+
+        private static void setPlatform(String platform) {
+            byte var2 = -1;
+            switch(platform.hashCode()) {
+                case 107855:
+                    if (platform.equals("mac")) {
+                        var2 = 1;
+                    }
+                    break;
+                case 102977780:
+                    if (platform.equals("linux")) {
+                        var2 = 2;
+                    }
+                    break;
+                case 1349493379:
+                    if (platform.equals("windows")) {
+                        var2 = 0;
+                    }
+            }
+
+            switch(var2) {
+                case 0:
+                    capability.setPlatform(Platform.WINDOWS);
+                    break;
+                case 1:
+                    capability.setPlatform(Platform.MAC);
+                    break;
+                case 2:
+                    capability.setPlatform(Platform.LINUX);
+                    break;
+                default:
+                    LOGGER.info("TESTEASY MESSAGE: Failed to set the Platform as: " + Constant.PLATFORM);
                     System.exit(1);
             }
 
-            LOGGER.info("TESTEASY MESSAGE: Successfully Set the driver locations");
+            LOGGER.info("TESTEASY MESSAGE: Successfully set the Platform as: " + Constant.PLATFORM);
         }
 
         public static void setWebDriver() {

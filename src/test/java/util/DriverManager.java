@@ -15,6 +15,13 @@ import org.openqa.selenium.remote.RemoteWebDriver;
         }
 
         public static RemoteWebDriver getDriver() {
+            if (util.Constant.BROWSER_NAME == null || util.Constant.BROWSER_VERSION == null || util.Constant.PLATFORM == null) {
+                try {
+                    util.Constant.loadXmlProperties();
+                } catch (Exception e) {
+                    throw new RuntimeException("Failed to load framework properties", e);
+                }
+            }
             if (driver.get() == null) {
                 LOGGER.info("Thread has no WedDriver, creating new one");
                 Allure.parameter("Browser", util.Constant.BROWSER_NAME);

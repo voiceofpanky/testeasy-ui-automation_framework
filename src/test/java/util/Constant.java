@@ -22,6 +22,7 @@ public class Constant {
     private static final String PLATFORM_KEY = "platform";
     private static final String HUBURL_KEY = "hubURL";
     private static final String GRID_MODE_KEY = "grid-mode";
+    public static String CHROME_DRIVER_PATH;
     private static Properties properties;
     public static String DRIVER_TYPE;
     public static String DRIVER_LOCATION;
@@ -48,6 +49,7 @@ public class Constant {
 
         try {
             DRIVER_LOCATION = properties.getProperty("driverLocation") == null ? driverLocation.getPath() + "chromedriver.exe" : driverLocation.getPath() + properties.getProperty("driverLocation");
+            CHROME_DRIVER_PATH = DRIVER_LOCATION; // Set correct path after loading properties
             DRIVER_TYPE = properties.getProperty("driverType") == null ? "webdriver.chrome.driver" : properties.getProperty("driverType");
             BROWSER_NAME = properties.getProperty("browser") == null ? "chrome" : properties.getProperty("browser");
             URL = properties.getProperty("url");
