@@ -1,8 +1,7 @@
 package step_definitions;
 
-import driver.DriverManager;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import io.cucumber.datatable.DataTable;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -11,6 +10,7 @@ import org.testng.Reporter;
 import pages.AmazonHomePage;
 import pages.ProductDisplayPage;
 import pages.SearchResultsPage;
+import util.DriverManager;
 
 import java.util.List;
 

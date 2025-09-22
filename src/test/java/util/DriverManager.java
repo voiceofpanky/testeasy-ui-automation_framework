@@ -1,8 +1,7 @@
-package driver;
+package util;
 
 
 import io.qameta.allure.Allure;
-import util.DriverFactory;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.Capabilities;

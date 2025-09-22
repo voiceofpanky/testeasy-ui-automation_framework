@@ -1,13 +1,13 @@
 package step_definitions;
 
-import driver.DriverManager;
-import cucumber.api.java.en.Given;
-import cucumber.api.java.en.When;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.When;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.Assert;
 import org.testng.Reporter;
 import pages.AmazonHomePage;
+import util.DriverManager;
 
 /**
  * Created by Pankaj Sao on 11/7/2020.

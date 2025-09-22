@@ -1,7 +1,7 @@
 package runner;
 
-import cucumber.api.CucumberOptions;
-import custom.CustomAbstractTestNGCucumberTests;
+import io.cucumber.testng.CucumberOptions;
+import io.cucumber.testng.AbstractTestNGCucumberTests;
 import org.testng.annotations.Test;
 
 /**
@@ -9,7 +9,6 @@ import org.testng.annotations.Test;
  */
 @CucumberOptions(
         dryRun = false,//Skip execution of glue code.
-        strict = true,// Treat undefined and pending steps as errors.
         features = "src/test/resources/features",
         glue = {"step_definitions"},
         plugin = {
@@ -18,9 +17,9 @@ import org.testng.annotations.Test;
                 "html:target/cucumber-reports"
         },
         monochrome = false,//Don't colour terminal output.
-        tags = {"@regression"}
+        tags = "@regression"
 )
 @Test
-public class RegressionTest extends CustomAbstractTestNGCucumberTests {
+public class RegressionTest extends AbstractTestNGCucumberTests {
 }
 

@@ -1,13 +1,13 @@
 package step_definitions;
 
-import cucumber.api.java.en.Given;
-import cucumber.api.java.en.Then;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.Assert;
 import org.testng.Reporter;
 import pages.ProductDisplayPage;
-import driver.DriverManager;
+import util.DriverManager;
 
 /**
  * Created by Pankaj Sao on 11/7/2020.
