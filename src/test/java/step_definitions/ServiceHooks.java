@@ -1,6 +1,6 @@
 package step_definitions;
 
-import util.DriverManager;
+import driver.DriverManager;
 import util.Constant;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;

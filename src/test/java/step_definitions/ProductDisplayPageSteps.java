@@ -7,7 +7,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.Assert;
 import org.testng.Reporter;
 import pages.ProductDisplayPage;
-import util.DriverManager;
+import driver.DriverManager;
 
 /**
  * Created by Pankaj Sao on 11/7/2020.

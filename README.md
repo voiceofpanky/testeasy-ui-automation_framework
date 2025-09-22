@@ -44,6 +44,9 @@ Goto SmokeTest.xml and configure your browser details and start Run.
   To run scenarios in parallel,
   
     mvn clean install -PSmokeTest
+
+    OR if maven installation is at specific path
+     Navigate to path then execute --> mvn clean install -PSmokeTest
     
   To run scenarios in cross browsers at the same time
   

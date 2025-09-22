@@ -1,5 +1,7 @@
 package panels;
 
+import pages.BasicPage;
+
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;

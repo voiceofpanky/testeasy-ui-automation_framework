@@ -1,6 +1,6 @@
 package step_definitions;
 
-import util.DriverManager;
+import driver.DriverManager;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
 import org.apache.log4j.Logger;

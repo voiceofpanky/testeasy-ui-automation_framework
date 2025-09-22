@@ -1,6 +1,6 @@
 package step_definitions;
 
-import util.DriverManager;
+import driver.DriverManager;
 import cucumber.api.java.en.Then;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.remote.RemoteWebDriver;
