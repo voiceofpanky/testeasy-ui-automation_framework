@@ -1,55 +1,50 @@
-package custom;
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by Fernflower decompiler)
-//
+// package custom;
+// //
+// // Source code recreated from a .class file by IntelliJ IDEA
+// // (powered by Fernflower decompiler)
+// //
 
-import cucumber.api.CucumberOptions;
-import cucumber.api.testng.CucumberFeatureWrapper;
-import cucumber.api.testng.PickleEventWrapper;
-import cucumber.api.testng.TestNGCucumberRunner;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
+// import io.cucumber.testng.AbstractTestNGCucumberTests;
+// import io.cucumber.testng.CucumberOptions;
+// import io.cucumber.testng.FeatureWrapper;
+// import io.cucumber.testng.PickleWrapper;
+// import org.testng.annotations.AfterClass;
+// import org.testng.annotations.BeforeClass;
+// import org.testng.annotations.DataProvider;
+// import org.testng.annotations.Test;
 
-@CucumberOptions(
-        strict = true,
-        plugin = {"json:target/cucumber-report-feature-composite.json"}
-)
-public class CustomAbstractTestNGCucumberTests {
-    private TestNGCucumberRunner testNGCucumberRunner;
+// @CucumberOptions(
+//         strict = true,
+//         plugin = {"json:target/cucumber-report-feature-composite.json"}
+// )
+// public class CustomAbstractTestNGCucumberTests extends AbstractTestNGCucumberTests {
+//     @BeforeClass(
+//             alwaysRun = true
+//     )
+//     public void setUpClass() throws Exception {
+//         super.setUpClass();
+//     }
 
-    public CustomAbstractTestNGCucumberTests() {
-    }
+//     @Test(
+//             groups = {"cucumber"},
+//             description = "Runs Cucumber Scenarios",
+//             dataProvider = "scenarios"
+//     )
+//     public void scenario(PickleWrapper pickleEvent, FeatureWrapper cucumberFeature) throws Throwable {
+//         super.scenario(pickleEvent.getPickleEvent(), cucumberFeature.getCucumberFeature());
+//     }
 
-    @BeforeClass(
-            alwaysRun = true
-    )
-    public void setUpClass() throws Exception {
-        this.testNGCucumberRunner = new TestNGCucumberRunner(this.getClass());
-    }
+//     @DataProvider(
+//             parallel = true
+//     )
+//     public Object[][] scenarios() {
+//         return super.scenarios();
+//     }
 
-    @Test(
-            groups = {"cucumber"},
-            description = "Runs Cucumber Scenarios",
-            dataProvider = "scenarios"
-    )
-    public void scenario(PickleEventWrapper pickleEvent, CucumberFeatureWrapper cucumberFeature) throws Throwable {
-        this.testNGCucumberRunner.runScenario(pickleEvent.getPickleEvent());
-    }
-
-    @DataProvider(
-            parallel = true
-    )
-    public Object[][] scenarios() {
-        return this.testNGCucumberRunner.provideScenarios();
-    }
-
-    @AfterClass(
-            alwaysRun = true
-    )
-    public void tearDownClass() throws Exception {
-        this.testNGCucumberRunner.finish();
-    }
-}
+//     @AfterClass(
+//             alwaysRun = true
+//     )
+//     public void tearDownClass() throws Exception {
+//         super.tearDownClass();
+//     }
+// }

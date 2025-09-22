@@ -1,11 +1,11 @@
 package step_definitions;
 
-import util.DriverManager;
 import io.cucumber.java.en.When;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.Reporter;
 import pages.AddCartPage;
+import util.DriverManager;
 
 /**
  * Created by Pankaj Sao on 11/8/2020.

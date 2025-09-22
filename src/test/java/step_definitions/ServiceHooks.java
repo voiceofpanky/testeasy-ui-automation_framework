@@ -1,11 +1,11 @@
 package step_definitions;
 
-import util.Constant;
-import util.DriverManager;
-import io.cucumber.java.Scenario;
 import io.cucumber.java.After;
+import io.cucumber.java.Scenario;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import util.Constant;
+import util.DriverManager;
 
 /**
  * Created by Pankaj Sao on 11/7/2020.
